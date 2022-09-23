@@ -111,13 +111,13 @@ export default function Home() {
           </div>
         </div>
 
-        {all.map((x) => {
-          return (
-            <NavLink to={`pokemons/${x.id}`} key={x.id} className={s.links}>
-              <Card name={x.name} img={x.img} type={x.types} id={x.id} />
-            </NavLink>
-          );
-        })}
+          {all.map((x) => {
+            return (
+              <NavLink to={`pokemons/${x.id}`} key={x.id} className={s.links}>
+                <Card name={x.name} img={x.img} type={x.types} id={x.id} />
+              </NavLink>
+            );
+          })}
 
         <Paginado
           pokemonsPorPagina={pokemonsPorPagina}

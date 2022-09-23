@@ -24,19 +24,6 @@ export function getDetail(id) {
   };
 }
 
-export function nameSearch(name) {
-  return async function (dispatch) {
-    try {
-      const searchName = await axios.get(
-        `http://localhost:3001/pokemons?name=${name}`
-      );
-      return dispatch({ type: "GET_SEARCH", payload: searchName.data });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-}
-
 export function postPokemons(data) {
   return async function (dispatch) {
     const createPokemon = await axios.post(
