@@ -56,6 +56,7 @@ export default function reducer(state = initialState, action) {
         });
       }
       return { ...state, pokemons: filtradoOrder };
+      
     case "FILTER_ATTACK":
       let filterAttack;
       if (action.payload === "No filters") {
