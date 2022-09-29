@@ -6,7 +6,7 @@ export default function Card({ name, type, img, id }) {
     <div className={s.content} key={id}>
       <h2>{name}</h2>
       <img src={img} alt="fondo" />
-      <h5>Type: {type}</h5>
+      <h5>Type: {type.join(", ")}</h5>
     </div>
   );
 }

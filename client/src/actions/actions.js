@@ -36,10 +36,15 @@ export function postPokemons(data) {
 
 export function SearchPokemons(name) {
   return async function (dispatch) {
-    const pokemon = await axios.get(
-      `http://localhost:3001/pokemons?name=${name}`
-    );
-    return dispatch({ type: "SERACH_POKEMONS", payload: pokemon.data });
+    try {
+      const pokemon = await axios.get(
+        `http://localhost:3001/pokemons?name=${name}`
+      );
+      return dispatch({ type: "SERACH_POKEMONS", payload: pokemon.data });
+    } catch (error) {
+      console.log(error);
+      alert("non-existent pokemon");
+    }
   };
 }
 
@@ -57,4 +62,8 @@ export function filterAttack(payload) {
 
 export function filterCreate(payload) {
   return { type: "FILTER_CREATE", payload };
+}
+
+export function clearDetail() {
+  return { type: "CLEAR_DETAIL" };
 }

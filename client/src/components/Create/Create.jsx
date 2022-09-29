@@ -8,11 +8,11 @@ import { getTypes } from "../../actions/actions.js";
 import { NavLink } from "react-router-dom";
 
 export default function Create() {
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getTypes());
-  }, []);
+  }, [dispatch]);
 
-  const dispatch = useDispatch();
   const [errors, setErrors] = useState({});
   const allTypes = useSelector((state) => state.type);
 
@@ -30,30 +30,31 @@ export default function Create() {
 
   function validate(input) {
     let errors = {};
-    if (!input.name) {
-    errors.name = "Obligatory field";
-    }
-    if (!input.img) {
-      errors.img = "Obligatory field";
-    }
-    if (!input.hp) {
-      errors.hp = "Obligatory field";
-    }
-    if (!input.attack) {
-      errors.attack = "Obligatory field";
-    }
-    if (!input.defense) {
-      errors.defense = "Obligatory field";
-    }
-    if (!input.speed) {
-      errors.speed = "Obligatory field";
-    }
-    if (!input.height) {
-      errors.height = "Obligatory field";
-    }
-    if (!input.weight) {
-      errors.weight = "Obligatory field";
-    }
+    if (!input.name) errors.name = "Obligatory field";
+    if (!/["A-Za-z"]/.test(input.name))
+      errors.name = "name cannot contain characters";
+
+    if (!input.img) errors.img = "Obligatory field";
+    if (!/["A-Za-z"]/.test(input.img))
+      errors.img = "name cannot contain characters";
+
+    if (!input.hp) errors.hp = "Obligatory field";
+    if (isNaN(input.hp)) errors.hp = "must be a number";
+
+    if (!input.attack) errors.attack = "Obligatory field";
+    if (isNaN(input.attack)) errors.attack = "must be a number";
+
+    if (!input.defense) errors.defense = "Obligatory field";
+    if (isNaN(input.defense)) errors.defense = "must be a number";
+
+    if (!input.speed) errors.speed = "Obligatory field";
+    if (isNaN(input.speed)) errors.speed = "must be a number";
+
+    if (isNaN(input.height)) errors.height = "must be a number";
+    if (!input.height) errors.height = "Obligatory field";
+
+    if (!input.weight) errors.weight = "Obligatory field";
+    if (isNaN(input.weight)) errors.weight = "must be a number";
     return errors;
   }
 
@@ -92,78 +93,102 @@ export default function Create() {
       <NavLink to="/pokemons" className={s.buttonback}></NavLink>
       <h1>Create your pokemon</h1>
       <form className={s.contentForm} onSubmit={(e) => handelSubmit(e)}>
-        <input
-          type="text"
-          placeholder={errors.name ?  errors.name : " Name"} 
-          name="name"
-          value={input.name}
-          className={errors.name ? s.danger : s.inputs}
-          onChange={(e) => handelChange(e)}
-        />
-      
-        <input
-          type="text"
-          placeholder= {errors.img ?  errors.img : " URL image"}            
-          name="img"
-          value={input.img}
-          onChange={(e) => handelChange(e)}
-          className={errors.img ? s.danger : s.inputs}
-        />
-        
-
-        <input
-          type="text"
-          placeholder={errors.hp ?  errors.hp :" Hp"}
-          name="hp"
-          value={input.hp}
-          onChange={(e) => handelChange(e)}
-          className={errors.hp ? s.danger : s.inputs}
-        />
-
-        <input
-          type="text"
-          placeholder={errors.attack ?  errors.attack :" Attack"}
-          name="attack"
-          value={input.attack}
-          onChange={(e) => handelChange(e)}
-          className={errors.attack ? s.danger : s.inputs}
-        />
-
-        <input
-          type="text"
-          placeholder={errors.defense ?  errors.defense :" Defense"}
-          name="defense"
-          value={input.defense}
-          onChange={(e) => handelChange(e)}
-          className={errors.defense ? s.danger : s.inputs}
-        />
-
-        <input
-          type="text"
-          placeholder={errors.speed ?  errors.speed :" Speed"}
-          name="speed"
-          value={input.speed}
-          onChange={(e) => handelChange(e)}
-          className={errors.speed ? s.danger : s.inputs}
-        />
-
-        <input
-          type="text"
-          placeholder={errors.height ?  errors.height :" Height"}
-          name="height"
-          value={input.height}
-          onChange={(e) => handelChange(e)}
-          className={errors.height ? s.danger : s.inputs}
-        />
-
-        <input
-          type="text"
-          placeholder={errors.weight ?  errors.weight :" Weight"}
-          name="weight"
-          value={input.weight}
-          onChange={(e) => handelChange(e)}
-          className={errors.weight ? s.danger : s.inputs}
-        />
+        <div>
+          <label>Name</label>
+          <input
+            type="text"
+            placeholder={errors.name ? errors.name : " Name"}
+            name="name"
+            value={input.name}
+            className={errors.name ? s.danger : s.inputs}
+            onChange={(e) => handelChange(e)}
+          />
+          {errors.name && <p>{errors.name}</p>}
+        </div>
+        <div>
+          <label>URL image</label>
+          <input
+            type="text"
+            placeholder=" URL image"
+            name="img"
+            value={input.img}
+            onChange={(e) => handelChange(e)}
+            className={errors.img ? s.danger : s.inputs}
+          />
+          {errors.img && <p>{errors.img}</p>}
+        </div>
+        <div>
+          <label>Hp</label>
+          <input
+            type="text"
+            placeholder=" Hp"
+            name="hp"
+            value={input.hp}
+            onChange={(e) => handelChange(e)}
+            className={errors.hp ? s.danger : s.inputs}
+          />
+          {errors.hp && <p>{errors.hp}</p>}
+        </div>
+        <div>
+          <label>Attack</label>
+          <input
+            type="text"
+            placeholder=" Attack"
+            name="attack"
+            value={input.attack}
+            onChange={(e) => handelChange(e)}
+            className={errors.attack ? s.danger : s.inputs}
+          />
+          {errors.attack && <p>{errors.attack}</p>}
+        </div>
+        <div>
+          <label>Defense</label>
+          <input
+            type="text"
+            placeholder=" Defense"
+            name="defense"
+            value={input.defense}
+            onChange={(e) => handelChange(e)}
+            className={errors.defense ? s.danger : s.inputs}
+          />
+          {errors.defense && <p>{errors.defense}</p>}
+        </div>
+        <div>
+          <label>Speed</label>
+          <input
+            type="text"
+            placeholder=" Speed"
+            name="speed"
+            value={input.speed}
+            onChange={(e) => handelChange(e)}
+            className={errors.speed ? s.danger : s.inputs}
+          />
+          {errors.speed && <p>{errors.speed}</p>}
+        </div>
+        <div>
+          <label>Height</label>
+          <input
+            type="text"
+            placeholder=" Height"
+            name="height"
+            value={input.height}
+            onChange={(e) => handelChange(e)}
+            className={errors.height ? s.danger : s.inputs}
+          />
+          {errors.height && <p>{errors.height}</p>}
+        </div>
+        <div>
+          <label>Weight</label>
+          <input
+            type="text"
+            placeholder=" Weight"
+            name="weight"
+            value={input.weight}
+            onChange={(e) => handelChange(e)}
+            className={errors.weight ? s.danger : s.inputs}
+          />
+          {errors.weight && <p>{errors.weight}</p>}
+        </div>
 
         <select onChange={(e) => handelSelect(e)}>
           <option value="">Types</option>
@@ -173,7 +198,11 @@ export default function Create() {
             </option>
           ))}
         </select>
-        <input type="submit" value="Create your pokemon" className={!Object.entries(errors).length ?  s.button: s.disable}  />
+        <input
+          type="submit"
+          value="Create your pokemon"
+          className={!Object.entries(errors).length ? s.button : s.disable}
+        />
       </form>
     </div>
   );

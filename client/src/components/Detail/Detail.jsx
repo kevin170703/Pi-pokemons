@@ -1,9 +1,9 @@
 import React from "react";
 import s from "./Detail.module.css";
 import Loading from "../Loading/Loading";
+import { getDetail } from "../../actions/actions.js";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { getDetail } from "../../actions/actions.js";
 import { NavLink } from "react-router-dom";
 
 export default function Detail(props) {
@@ -30,7 +30,7 @@ export default function Detail(props) {
           <p>
             {" "}
             <b>Type: </b>
-            {`${details.type}`}
+            {`${details.type.join(", ")}`}
           </p>
           <p>
             <b>HP: </b>

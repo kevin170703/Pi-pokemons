@@ -22,8 +22,9 @@ router.get("/pokemons", async (req, res) => {
     const search = pokemonsNameBdd.filter(
       (x) => x.name.toLowerCase() === name.toLowerCase()
     );
-    if (!search.length) return res.status(404).send("non-existent pokemon");
-    return res.status(200).json([search]);
+    if (!search.length)
+      return res.status(404).json({ msg: "non-existent pokemon" });
+    return res.status(200).json([...search]);
   }
   const allpo = await moduls.allPokemons();
   return res.status(200).json(allpo);
@@ -68,6 +69,7 @@ router.post("/pokemons", async (req, res) => {
   const { name, hp, attack, defense, speed, height, weight, types, img } =
     req.body;
   if (!name) return res.status(404).send("Faltan parametros");
+
   const newPokemon = await Pokemon.create({
     name,
     hp,
@@ -79,7 +81,7 @@ router.post("/pokemons", async (req, res) => {
     img,
   });
   const pokemomType = await Types.findAll({ where: { name: types } });
-  console.log(pokemomType)
+  console.log(pokemomType);
   newPokemon.addTypes(pokemomType);
   res.send("Pokemon create oks");
 });

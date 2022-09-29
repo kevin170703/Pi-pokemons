@@ -12,6 +12,7 @@
 .content:hover {
   transform: scale(1.05);
   transition: all 0.2s ease-out;
+  filter: drop-shadow(0 0 0.75rem #000);
 }
 
 .content h2 {

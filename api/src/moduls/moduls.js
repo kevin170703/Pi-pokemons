@@ -28,7 +28,7 @@ const pokemonNameSearchApi = async (name) => {
       id: pokemonName.data.id,
       name: pokemonName.data.name,
       img: pokemonName.data.sprites.other.home.front_default,
-      type: pokemonName.data.types.map((x) => x.type.name),
+      types: pokemonName.data.types.map((x) => x.type.name),
     };
   } catch (error) {
     console.log(error);
@@ -52,13 +52,14 @@ const allType = async () => {
 
 const allPokemonsApi = async () => {
   const pokemons = await axios.get(
-    "https://pokeapi.co/api/v2/pokemon?limit=10"
+    "https://pokeapi.co/api/v2/pokemon?limit=40"
   );
   const pokemonsApi = pokemons.data.results;
   const pokemonsApi2 = [];
+  // pokemonsApi.forEach(async (x) => {
+  // const pokemonsI = await axios.get(x.url)};
   for (let i = 0; i < pokemonsApi.length; i++) {
     const pokemonsI = await axios.get(pokemonsApi[i].url);
-
     pokemonsApi2.push({
       id: pokemonsI.data.id,
       name: pokemonsI.data.name,

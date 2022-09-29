@@ -14,6 +14,7 @@ import {
   fiterOrder,
   filterAttack,
   filterCreate,
+  clearDetail,
 } from "../../actions/actions.js";
 
 export default function Home() {
@@ -40,9 +41,14 @@ export default function Home() {
   //-------------------------------------//
 
   useEffect(() => {
+    dispatch(clearDetail());
     dispatch(getTypes());
     dispatch(getPokemons());
   }, [dispatch]);
+
+  useEffect(() => {
+    setPaginaActual(1);
+  }, [pokemons.length, setPaginaActual]);
 
   //-----------------filtros---------------------------------//
 
@@ -68,6 +74,7 @@ export default function Home() {
     dispatch(filterCreate(e.target.value));
     setUpdate(e.target.value);
   }
+
   if (!allPokemons.length) return <Loading />;
   else
     return (
@@ -111,13 +118,13 @@ export default function Home() {
           </div>
         </div>
 
-          {all.map((x) => {
-            return (
-              <NavLink to={`pokemons/${x.id}`} key={x.id} className={s.links}>
-                <Card name={x.name} img={x.img} type={x.types} id={x.id} />
-              </NavLink>
-            );
-          })}
+        {all.map((x) => {
+          return (
+            <NavLink to={`pokemons/${x.id}`} key={x.id} className={s.links}>
+              <Card name={x.name} img={x.img} type={x.types} id={x.id} />
+            </NavLink>
+          );
+        })}
 
         <Paginado
           pokemonsPorPagina={pokemonsPorPagina}

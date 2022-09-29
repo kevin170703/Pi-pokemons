@@ -17,8 +17,6 @@ export default function reducer(state = initialState, action) {
       return { ...state, type: action.payload };
     case "GET_DETAIL":
       return { ...state, detail: action.payload };
-    case "GET_SEARCH":
-      return { ...state, pokemon: action };
     case "POST_POKEMON":
       return { ...state };
     case "SERACH_POKEMONS":
@@ -40,23 +38,21 @@ export default function reducer(state = initialState, action) {
           if (a.id > b.id) return 1;
           return 0;
         });
-      }
-      if (action.payload === "A-Z") {
+      } else if (action.payload === "A-Z") {
         filtradoOrder = state.pokemons.sort(function (a, b) {
-          if (a.name < b.name) return -1;
-          if (a.name > b.name) return 1;
+          if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+          if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
           return 0;
         });
-      }
-      if (action.payload === "Z-A") {
+      } else if (action.payload === "Z-A") {
         filtradoOrder = state.pokemons.sort(function (a, b) {
-          if (a.name > b.name) return -1;
-          if (a.name < b.name) return 1;
+          if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
+          if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
           return 0;
         });
       }
       return { ...state, pokemons: filtradoOrder };
-      
+
     case "FILTER_ATTACK":
       let filterAttack;
       if (action.payload === "No filters") {
@@ -86,17 +82,15 @@ export default function reducer(state = initialState, action) {
       let filterCreate;
       if (action.payload === "No filters") filterCreate = state.allPokemons;
       if (action.payload === "create") {
-        filterCreate = state.allPokemons.filter((x) => {
-          if (isNaN(x.id)) return x;
-        });
+        filterCreate = state.allPokemons.filter((x) => isNaN(x.id));
       }
       if (action.payload === "exist") {
-        filterCreate = state.allPokemons.filter((x) => {
-          if (!isNaN(x.id)) return x;
-        });
+        filterCreate = state.allPokemons.filter((x) => !isNaN(x.id));
       }
       return { ...state, pokemons: filterCreate };
 
+    case "CLEAR_DETAIL":
+      return { ...state, detail: [] };
     default:
       return { ...state };
   }

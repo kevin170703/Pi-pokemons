@@ -3,11 +3,16 @@ import pokeLogo from "../../img/pokeLogo.png";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
-import { SearchPokemons } from "../../actions/actions.js";
+import { SearchPokemons, filterType } from "../../actions/actions.js";
 
 export default function NavBar() {
   const [search, setSearch] = useState("");
   const dispatch = useDispatch();
+
+  function handelUpdate(e) {
+    e.preventDefault();
+    dispatch(filterType("All"));
+  }
 
   function handelSearch(e) {
     e.preventDefault();
@@ -16,13 +21,14 @@ export default function NavBar() {
 
   function searchPokemons(e) {
     e.preventDefault();
-    dispatch(SearchPokemons(search));
+    dispatch(SearchPokemons(search.toLowerCase()));
+    setSearch("");
   }
 
   return (
     <div className={s.content}>
       <Link to="/pokemons">
-        <img src={pokeLogo} alt="pokeLogo" />
+        <img src={pokeLogo} alt="pokeLogo" onClick={(e) => handelUpdate(e)} />
       </Link>
       <div className={s.search}>
         <NavLink to="/create" className={s.create}>
