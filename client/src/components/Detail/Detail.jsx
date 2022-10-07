@@ -18,44 +18,46 @@ export default function Detail(props) {
     return (
       <div className={s.content}>
         <NavLink to="/pokemons" className={s.buttonback}></NavLink>
-        <div className={s.img}>
-          <h1>{details.name}</h1>
-          <img src={details.img} alt={details.name} />
-        </div>
-        <div className={s.text}>
-          <p>
-            <b>Id: </b>
-            {` ${details.id}`}
-          </p>
-          <p>
-            {" "}
-            <b>Type: </b>
-            {`${details.type.join(", ")}`}
-          </p>
-          <p>
-            <b>HP: </b>
-            {` ${details.hp}`}
-          </p>
-          <p>
-            <b>Attack: </b>
-            {` ${details.attack}`}
-          </p>
-          <p>
-            <b>Defense: </b>
-            {` ${details.defense}`}
-          </p>
-          <p>
-            <b>Speed: </b>
-            {` ${details.speed}`}
-          </p>
-          <p>
-            <b>Heigth: </b>
-            {` ${details.height}`}
-          </p>
-          <p>
-            <b>Weigth: </b>
-            {` ${details.weight}`}
-          </p>
+        <div className={s.divv}>
+          <div className={s.img}>
+            <h1>{details.name}</h1>
+            <img src={details.img} alt={details.name} />
+          </div>
+          <div className={s.text}>
+            <p>
+              <b>Id: </b>
+              {` ${details.id}`}
+            </p>
+            <p>
+              {" "}
+              <b>Type: </b>
+              {`${details.type.join(", ")}`}
+            </p>
+            <p>
+              <b>HP: </b>
+              {` ${details.hp}`}
+            </p>
+            <p>
+              <b>Attack: </b>
+              {` ${details.attack}`}
+            </p>
+            <p>
+              <b>Defense: </b>
+              {` ${details.defense}`}
+            </p>
+            <p>
+              <b>Speed: </b>
+              {` ${details.speed}`}
+            </p>
+            <p>
+              <b>Heigth: </b>
+              {` ${details.height}`}
+            </p>
+            <p>
+              <b>Weigth: </b>
+              {` ${details.weight}`}
+            </p>
+          </div>
         </div>
       </div>
     );

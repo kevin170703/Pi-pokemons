@@ -2,17 +2,29 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90vh;
+  height: 100vh;
   color: #fff;
+  background: radial-gradient(
+    circle,
+    rgba(191, 2, 28, 1) 0%,
+    rgba(78, 1, 8, 1) 100%
+  );
+}
+.divv {
+  display: flex;
   border-radius: 40px;
+  background: linear-gradient(
+      180deg,
+      rgba(22, 24, 30, 0) 0%,
+      rgba(22, 24, 30, 0.7) 65.28%
+    ),
+    linear-gradient(0deg, rgba(22, 24, 30, 0.4), rgba(22, 24, 30, 0.4));
+  box-shadow: 0px 10px 10px black;
 }
 
 .img {
-  width: 50vh;
-  height: 50vh;
-  border-bottom-left-radius: 40px;
-  border-top-left-radius: 40px;
-  background: rgba(0, 0, 0, 0.8);
+  width: 60vh;
+  height: 60vh;
 }
 
 .img img {
@@ -20,16 +32,17 @@
 }
 
 .img h1 {
-  margin: 0;
+  margin: 20px 0 0 0;
 }
 
 .text {
-  border-bottom-right-radius: 40px;
-  border-top-right-radius: 40px;
-  width: 35vh;
-  height: 50vh;
-  text-align: justify;
-  background: rgba(0, 0, 0, 0.8);
+  width: 50vh;
+  height: 60vh;
+  text-align: center;
+}
+
+.text p {
+  font-size: 15px;
 }
 
 .buttonback {

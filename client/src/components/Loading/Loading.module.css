@@ -4,6 +4,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-image: url("https://images4.alphacoders.com/115/1159692.jpg");
+  background-size: 100%;
 }
 
 .loading img {

@@ -204,6 +204,13 @@ export default function Create() {
           className={!Object.entries(errors).length ? s.button : s.disable}
         />
       </form>
+      <div className={s.cardRednder}>
+        <div>
+          <h2>{input.name}</h2>
+          <img src={input.img} alt={input.name} />
+        </div>
+        <h3>{input.types.join(", ")}</h3>
+      </div>
     </div>
   );
 }

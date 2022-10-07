@@ -7,6 +7,28 @@
   background: rgba(0, 0, 0, 0.5);
   color: #fff;
   backdrop-filter: blur(4px);
+  animation-name: card;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  position: relative;
+}
+
+@keyframes card {
+  0% {
+    opacity: 0;
+    top: 100px;
+    left: 0;
+  }
+
+  50% {
+    opacity: 0.5;
+    top: 50px;
+  }
+
+  100% {
+    opacity: 1;
+    top: 0;
+  }
 }
 
 .content:hover {
