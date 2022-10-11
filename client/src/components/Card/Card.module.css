@@ -11,6 +11,7 @@
   animation-duration: 1s;
   animation-timing-function: linear;
   position: relative;
+  transition: all 0.4s ease-out;
 }
 
 @keyframes card {
@@ -33,7 +34,6 @@
 
 .content:hover {
   transform: translateY(-5%);
-  transition: all 0.4s ease-out;
 }
 
 .content h2 {

@@ -31,6 +31,14 @@
   }
 }
 
+.logo {
+  transition: all 0.5s ease;
+}
+
+.logo:hover {
+  transform: rotate(360deg);
+}
+
 .inputT {
   width: 150px;
   height: 30px;
@@ -62,10 +70,10 @@
   color: #000;
   text-decoration: none;
   box-shadow: inset 3px 3px 4px rgba(0, 0, 0, 0.5);
+  transition: all 0.5s ease;
 }
 
 .create:hover {
-  transition: all 0.5s ease;
   transform: scale(0.95);
 }
 

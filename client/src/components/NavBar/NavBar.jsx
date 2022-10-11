@@ -27,9 +27,9 @@ export default function NavBar() {
 
   return (
     <div className={s.content}>
-      <Link to="/pokemons">
+      <NavLink to="/pokemons" className={s.logo}>
         <img src={pokeLogo} alt="pokeLogo" onClick={(e) => handelUpdate(e)} />
-      </Link>
+      </NavLink>
       <div className={s.search}>
         <NavLink to="/create" className={s.create}>
           Create Pokemon
