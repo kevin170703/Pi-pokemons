@@ -1,12 +1,12 @@
 .content {
   width: 250px;
-  height: 300px;
+  height: 310px;
   margin: 30px;
   padding: 5px;
-  border-radius: 20px;
-  background: rgba(0, 0, 0, 0.5);
+  border-radius: 40px;
+  background: #701717;
   color: #fff;
-  backdrop-filter: blur(4px);
+  box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.4);
   animation-name: card;
   animation-duration: 1s;
   animation-timing-function: linear;
@@ -32,20 +32,32 @@
 }
 
 .content:hover {
-  transform: scale(1.05);
-  transition: all 0.2s ease-out;
-  filter: drop-shadow(0 0 0.75rem #000);
+  transform: translateY(-5%);
+  transition: all 0.4s ease-out;
 }
 
 .content h2 {
   color: #000;
   background-color: #fff;
-  margin: 0;
-  padding: 20px;
-  border-start-start-radius: 20px;
-  border-start-end-radius: 20px;
+  margin: 5px;
+  font-weight: 600;
+  padding: 15px;
+  border-radius: 50px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
 }
 
 .content img {
   width: 150px;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.25);
+}
+
+.content h5 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 10px;
+  filter: drop-shadow(5px 3px 2px #000);
 }
