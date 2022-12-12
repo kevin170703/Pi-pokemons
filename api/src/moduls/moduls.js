@@ -51,9 +51,7 @@ const allType = async () => {
 };
 
 const allPokemonsApi = async () => {
-  const pokemons = await axios.get(
-    "https://pokeapi.co/api/v2/pokemon?limit=40"
-  );
+  const pokemons = await axios.get("https://pokeapi.co/api/v2/pokemon?limit=1");
   const pokemonsApi = pokemons.data.results;
   const pokemonsApi2 = [];
   // pokemonsApi.forEach(async (x) => {
